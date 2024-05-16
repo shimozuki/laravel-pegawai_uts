@@ -29,7 +29,7 @@
                     <form action="{{ route('alternatif.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="nama">Nama Warga</label>
+                            <label for="nama">Nama Pegawai</label>
                             <input type="text" class="form-control @error ('nama_alternatif') is-invalid @enderror" name="nama_alternatif" value="{{ old('nama_alternatif') }}">
 
                             @error('nama_alternatif')
