@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Crips;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
+use Illuminate\Support\Facades\DB;
 
 class CripsController extends Controller
 {
@@ -47,6 +48,7 @@ class CripsController extends Controller
 
     public function edit($id)
     {
+        $data['kriteria'] = Kriteria::all();
         $data['crips'] = Crips::findOrFail($id);
 
         return view('admin.crips.edit', $data);
@@ -71,13 +73,23 @@ class CripsController extends Controller
 
     public function destroy($id)
     {
+        DB::beginTransaction();
+
         try {
             $crips = Crips::findOrFail($id);
             $crips->delete();
+
+            // Truncate the Penilaian table if crips deletion was successful
             Penilaian::truncate();
+
+            DB::commit();
+
+            return redirect()->route('crips.index')->with('success', 'Data berhasil dihapus');
         } catch (Exception $e) {
-            \Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
-            die("Gagal");
+            DB::rollBack();
+            Log::emergency("File: " . $e->getFile() . " Line: " . $e->getLine() . " Message: " . $e->getMessage());
+
+            return redirect()->route('crips.index')->with('error', 'Gagal menghapus data');
         }
     }
 }

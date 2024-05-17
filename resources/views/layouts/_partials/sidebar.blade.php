@@ -3,7 +3,7 @@
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 
-            <div class="sidebar-brand-text mx-3">SPK Staf UTS</div>
+            <img src="{{ asset('Logo-uts.png') }}" alt="Logo UTS" width="75%">
         </a>
 
         <!-- Divider -->
@@ -54,7 +54,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Perhitungan Jabatan Struktural Akademik
+            Perhitungan Jabatan Struktural Akademik & ADMINISTRASI
         </div>
 
         <li class="nav-item {{ request()->Is('penilaian*') ? 'active':'' }}">

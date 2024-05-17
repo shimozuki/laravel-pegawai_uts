@@ -43,7 +43,7 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="code_jabatan">Bobot Sub Kriteria</label>
+                            <label for="code_jabatan">Code Jabatan</label>
                             <input type="text" class="form-control @error ('code_jabatan') is-invalid @enderror" name="code_jabatan">
 
                             @error('code_jabatan')
@@ -71,8 +71,6 @@
             <div class="collapse show" id="listkriteria">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <a href="{{ URL::to('download-kriteria-pdf') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm float-left"><i class="fas fa-download fa-sm text-white-50"></i>Download Laporan</a>
-
                         <table class="table table-striped table-hover" id="DataTable" data-paging="false">
                             <thead>
                                 <tr>
@@ -90,19 +88,13 @@
                                     <td>{{ $row->code_jabatan}}</td>
                                     <td>{{ $row->jabatan }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-circle btn-info"><i class="fa fa-eye"></i></a>
-                                        <a href="#" class="btn btn-sm btn-circle btn-warning">
+                                        <a href="{{ route('jabatan.edit',$row->id) }}" class="btn btn-sm btn-circle btn-warning">
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <a href="{{ route('kriteria.destroy',$row->id) }}" class="btn btn-sm btn-circle btn-danger hapus">
+                                        <a href="{{ route('jabatan.destroy',$row->id) }}" class="btn btn-sm btn-circle btn-danger hapus">
                                             <i class="fa fa-trash"></i>
                                         </a>
-
-                                        <a href="{{ URL::to('download-crips-pdf',$row->id) }}" target="_blank" class="btn btn-sm btn-circle btn-success">
-                                            <i class="fa fa-download"></i>
-                                        </a>
-
                                     </td>
                                 </tr>
                                 @endforeach
@@ -133,7 +125,6 @@
 <script>
     $(document).ready(function() {
         $('#DataTable').DataTable();
-
         $('.hapus').on('click', function() {
             swal({
                     title: "Apa anda yakin?",
@@ -154,18 +145,17 @@
                                 swal("Data berhasil dihapus!", {
                                     icon: "success",
                                 }).then((willDelete) => {
-                                    window.location = "{{ route('kriteria.index') }}"
+                                    location.reload();
                                 });
                             }
                         })
+                        location.reload();
                     } else {
                         swal("Data Aman!");
                     }
                 });
-
             return false;
         })
     })
 </script>
-
 @stop

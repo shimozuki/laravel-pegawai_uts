@@ -37,4 +37,46 @@ class JabatanController extends Controller
             die("Gagal");
         }
     }
+
+    public function edit($id)
+    {
+        try {
+            $jabatan = Jabatan_model::findOrFail($id);
+            return view('admin.jabatan.edit', compact('jabatan'));
+        } catch (Exception $e) {
+            \Log::error("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
+            return back()->with('error', 'Gagal mengambil data jabatan');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'code_jabatan' => 'required|string',
+            'jabatan'      => 'required|string'
+        ]);
+
+        try {
+            $jabatan = Jabatan_model::findOrFail($id);
+            $jabatan->code_jabatan = $request->code_jabatan;
+            $jabatan->jabatan = $request->jabatan;
+            $jabatan->save();
+            return redirect()->route('jabatan.index')->with('msg', 'Data jabatan berhasil diperbarui');
+        } catch (Exception $e) {
+            \Log::error("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
+            return back()->with('error', 'Gagal memperbarui data jabatan');
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $jabatan = Jabatan_model::findOrFail($id);
+            $jabatan->delete();
+            return redirect()->route('admin.jabatan.index')->with('msg', 'Data jabatan berhasil dihapus');
+        } catch (Exception $e) {
+            \Log::error("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
+            return back()->with('error', 'Gagal menghapus data jabatan');
+        }
+    }
 }

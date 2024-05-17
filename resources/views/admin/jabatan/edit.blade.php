@@ -27,14 +27,14 @@
                       </div>
                     @endif
 
-                    <form action="{{ route('crips.update', $crips->id) }}" method="post">
+                    <form action="{{ route('jabatan.update', $jabatan->id) }}" method="post">
                         @csrf
                         @method('put')
                         <div class="form-group">
-                            <label for="nama">Nama Crips</label>
-                            <input type="text" class="form-control @error ('nama_crips') is-invalid @enderror" name="nama_crips" value="{{ $crips->nama_crips }}">
+                            <label for="nama">Jabatan</label>
+                            <input type="text" class="form-control @error ('jabatan') is-invalid @enderror" name="jabatan" value="{{ $jabatan->jabatan }}">
 
-                            @error('nama_crips')
+                            @error('jabatan')
                                 <div class="invalid-feedback" role="alert">
                                     {{ $message }}
                                 </div>
@@ -42,10 +42,10 @@
 
                         </div>
                          <div class="form-group">
-                            <label for="bobot">Bobot Crips</label>
-                            <input type="text" class="form-control @error ('bobot') is-invalid @enderror" name="bobot" value="{{ $crips->bobot }}">
+                            <label for="code_jabatan">Codde Jabatan</label>
+                            <input type="text" class="form-control @error ('code_jabatan') is-invalid @enderror" name="code_jabatan" value="{{ $jabatan->code_jabatan }}">
 
-                            @error('bobot')
+                            @error('code_jabatan')
                                 <div class="invalid-feedback" role="alert">
                                     {{ $message }}
                                 </div>
@@ -53,7 +53,7 @@
 
                         </div>
                         <button class="btn btn-primary">Simpan</button>
-                        <a href="{{ route('kriteria.index') }}" class="btn btn-success">Kembali</a>
+                        <a href="{{ route('jabatan.index') }}" class="btn btn-success">Kembali</a>
                     </form>
                 </div>
             </div>
