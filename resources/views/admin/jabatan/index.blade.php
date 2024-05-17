@@ -122,6 +122,18 @@
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert.js')}}"></script>
+@if (session('warning'))
+<script>
+    swal({
+        title: "Peringatan",
+        text: "Code jabatan atau nama jabatan sudah ada!",
+        icon: "warning",
+        button: "OK",
+    }).then(function() {
+        window.location = "{{ route('jabatan.index') }}";
+    });
+</script>
+@endif
 <script>
     $(document).ready(function() {
         $('#DataTable').DataTable();

@@ -48,9 +48,10 @@
                     <thead>
                         <tr>
                             <th>Nama Alternatif</th>
-                            @foreach ($kriteria as $key => $value)
+                            @foreach ($kriteria->sortBy('id') as $key => $value)
                             <th>{{ $value->nama_kriteria }}</th>
                             @endforeach
+
                         </tr>
                     </thead>
                     <tbody>
@@ -94,9 +95,10 @@
                     <thead>
                         <tr>
                             <th>Alternatif / Kriteria</th>
-                            @foreach ($kriteria as $key => $value)
+                            @foreach ($kriteria->sortBy('id') as $key => $value)
                             <th>{{ $value->nama_kriteria }}</th>
                             @endforeach
+
                         </tr>
                     </thead>
                     <tbody>
@@ -133,7 +135,7 @@
                     <thead>
                         <tr>
                             <th></th>
-                            @foreach ($kriteria as $key => $value)
+                            @foreach ($kriteria->sortBy('id') as $key => $value)
                             <th>{{ $value->nama_kriteria }}</th>
                             @endforeach
                             <th rowspan="2" style="text-align: center; padding-bottom: 45px">Total</th>
@@ -165,10 +167,10 @@
 </div>
 @endif
 @stop
+@if (session('warning'))
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
-    // SweetAlert panggilan jika $penilaian kosong
     swal({
         title: "Peringatan",
         text: "Data penilaian tidak ditemukan!",
@@ -179,3 +181,4 @@
     });
 </script>
 @stop
+@endif

@@ -39,8 +39,8 @@ class AlgoritmaController extends Controller
         })->get();
 
         if ($penilaian->isEmpty()) {
-            alert()->warning('Peringatan', 'Data penilaian tidak ditemukan!')->persistent(true);
-            return redirect()->route('perhitungan.index');
+            return redirect()->route('perhitungan.index')
+            ->with('warning', 'Data penilaian tidak ditemukan!');
         }
 
         // Mencari min max normalisasi

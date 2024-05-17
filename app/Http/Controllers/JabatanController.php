@@ -24,17 +24,22 @@ class JabatanController extends Controller
             'code_jabatan' => 'required|string',
             'jabatan'      => 'required|string'
         ]);
+        $jabatan = Jabatan_model::where('code_jabatan', $request->jabatan)->Orwhere('jabatan', $request->jabatan)->first();
+        if (empty($jabatan)) {
+            return redirect()->route('jabatan.index')
+                ->with('warning', 'Code atau jabatan sudah ada!');
+        } else {
+            try {
 
-        try {
-
-            $jabatan = new Jabatan_model();
-            $jabatan->code_jabatan = $request->code_jabatan;
-            $jabatan->jabatan = $request->jabatan;
-            $jabatan->save();
-            return back()->with('msg', 'Berhasil Menambahkan Data');
-        } catch (Exception $e) {
-            \Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
-            die("Gagal");
+                $jabatan = new Jabatan_model();
+                $jabatan->code_jabatan = $request->code_jabatan;
+                $jabatan->jabatan = $request->jabatan;
+                $jabatan->save();
+                return back()->with('msg', 'Berhasil Menambahkan Data');
+            } catch (Exception $e) {
+                \Log::emergency("File:" . $e->getFile() . "Line:" . $e->getLine() . "Message:" . $e->getMessage());
+                die("Gagal");
+            }
         }
     }
 
