@@ -58,7 +58,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Perhitungan Jabatan Struktural Akademik & ADMINISTRASI
+            Perhitungan Jabatan Struktural Akademik & Administratif
         </div>
 
         <li class="nav-item {{ request()->Is('penilaian*') ? 'active':'' }}">
