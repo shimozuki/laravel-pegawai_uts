@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_kriteria',191);
             $table->string('attribut',191);
             $table->integer('bobot');
+            $table->enum('jns_jabatan', ['struktural', 'administratif', 'global']);
             $table->timestamps();
         });
     }

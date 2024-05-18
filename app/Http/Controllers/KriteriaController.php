@@ -29,7 +29,8 @@ class KriteriaController extends Controller
 
             'nama_kriteria' => 'required|string',
             'attribut'      => 'required|string',
-            'bobot'         => 'required|numeric'
+            'bobot'         => 'required|numeric',
+            'jns_jabatan'   => 'required|string'
 
         ]);
 
@@ -39,6 +40,7 @@ class KriteriaController extends Controller
             $kriteria->nama_kriteria = $request->nama_kriteria;
             $kriteria->attribut = $request->attribut;
             $kriteria->bobot = $request->bobot;
+            $kriteria->jns_jabatan = $request->jns_jabatan;
             $kriteria->save();
             return back()->with('msg','Berhasil Menambahkan Data');
 
@@ -64,7 +66,8 @@ class KriteriaController extends Controller
 
             'nama_kriteria' => 'required|string',
             'attribut'      => 'required|string',
-            'bobot'         => 'required|numeric'
+            'bobot'         => 'required|numeric',
+            'jns_jabatan'   => 'required|string'
 
         ]);
 
@@ -74,7 +77,8 @@ class KriteriaController extends Controller
             $kriteria->update([
                 'nama_kriteria' => $request->nama_kriteria,
                 'attribut'      => $request->attribut,
-                'bobot'         => $request->bobot
+                'bobot'         => $request->bobot,
+                'jns_jabatan'   => $request->jns_jabatan
             ]);
             return back()->with('msg','Berhasil Mengubah Data');
 

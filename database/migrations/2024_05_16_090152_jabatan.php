@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('code_jabatan',191);
             $table->string('jabatan',191);
+            $table->enum('jns_jabatan', ['struktural', 'administratif']);
             $table->timestamps();
         });
     }

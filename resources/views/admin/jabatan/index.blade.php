@@ -53,6 +53,21 @@
                             @enderror
 
                         </div>
+                        <div class="form-group">
+                            <label for="nama">Jenis Jabatan</label>
+                            <select name="jns_jabatan" id="" class="form-control" required>
+                                <option value="">---PILIH JENIS JABATAN---</option>
+                                <option value="struktural">Struktural</option>
+                                <option value="administratif">Administratif</option>
+                            </select>
+
+                            @error('jns_jabatan')
+                                <div class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                        </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
@@ -77,6 +92,7 @@
                                     <th>No</th>
                                     <th>Code Jabatan</th>
                                     <th>Jabatan</th>
+                                    <th>Jenis Jabatan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -87,6 +103,7 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $row->code_jabatan}}</td>
                                     <td>{{ $row->jabatan }}</td>
+                                    <td>{{ $row->jns_jabatan }}</td>
                                     <td>
                                         <a href="{{ route('jabatan.edit',$row->id) }}" class="btn btn-sm btn-circle btn-warning">
                                             <i class="fa fa-edit"></i>
@@ -109,12 +126,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
 @stop
 @section('js')
 

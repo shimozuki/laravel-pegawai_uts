@@ -58,13 +58,15 @@ class JabatanController extends Controller
     {
         $this->validate($request, [
             'code_jabatan' => 'required|string',
-            'jabatan'      => 'required|string'
+            'jabatan'      => 'required|string',
+            'jns_jabatan' => 'required|string'
         ]);
 
         try {
             $jabatan = Jabatan_model::findOrFail($id);
             $jabatan->code_jabatan = $request->code_jabatan;
             $jabatan->jabatan = $request->jabatan;
+            $jabatan->jns_jabatan = $request->jns_jabatan;
             $jabatan->save();
             return redirect()->route('jabatan.index')->with('msg', 'Data jabatan berhasil diperbarui');
         } catch (Exception $e) {

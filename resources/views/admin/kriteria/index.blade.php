@@ -68,6 +68,22 @@
                             @enderror
 
                         </div>
+                        <div class="form-group">
+                            <label for="nama">Jenis Jabatan</label>
+                            <select name="jns_jabatan" id="" class="form-control" required>
+                                <option value="">---PILIH JENIS JABATAN---</option>
+                                <option value="global">Global</option>
+                                <option value="struktural">Struktural</option>
+                                <option value="administratif">Administratif</option>
+                            </select>
+
+                            @error('jns_jabatan')
+                                <div class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                        </div>
                         <button class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
@@ -94,6 +110,7 @@
                                     <th>Nama Kriteria</th>
                                     <th>Attribut</th>
                                     <th>Bobot</th>
+                                    <th>Jenis Jabatan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -105,6 +122,7 @@
                                         <td>{{ $row->nama_kriteria }}</td>
                                         <td>{{ $row->attribut }}</td>
                                         <td>{{ $row->bobot }}</td>
+                                        <td> {{ $row->jns_jabatan }} </td>
                                         <td>
                                             <a href="{{ route('kriteria.show', $row->id) }}" class="btn btn-sm btn-circle btn-info"><i class="fa fa-eye"></i></a>
                                             <a href="{{ route('kriteria.edit',$row->id) }}" class="btn btn-sm btn-circle btn-warning">

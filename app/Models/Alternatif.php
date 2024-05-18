@@ -15,4 +15,9 @@ class Alternatif extends Model
     {
         return $this->hasMany(Penilaian::class, 'alternatif_id');
     }
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan_model::class, 'code_jabatan', 'code_jabatan');
+    }
 }

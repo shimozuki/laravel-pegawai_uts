@@ -78,6 +78,7 @@ class RegisterController extends Controller
             'alamat' => $data['alamat'],
             'telepon' => $data['telepon'],
             'keterangan' => $data['keterangan'],
+            'role' => $data['role'],
         ]);
     }
 
@@ -92,6 +93,7 @@ class RegisterController extends Controller
             $user->alamat = $request->alamat;
             $user->telepon = $request->telepon;
             $user->keterangan = $request->keterangan;
+            $user->role = $request->role;
             $alternatif->save();
             return back()->with('msg','Berhasil Menambahkan Data');
 
