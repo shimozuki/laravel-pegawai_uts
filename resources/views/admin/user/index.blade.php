@@ -30,9 +30,6 @@
 <div class="collapse show" id="listkriteria">
     <div class="card-body">
         <div class="table-responsive">
-            <a href="{{ route('register')}}">
-                <button class="btn btn-sm btn-primary">Tambah Pengguna</button>
-            </a>
             <br><br>
                 <table class="table table-bordered">
                     <thead>
