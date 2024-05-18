@@ -92,7 +92,7 @@ class AlgoritmaController extends Controller
             $highestRanking = reset($sortedData); // Mendapatkan elemen pertama dari array
             $nama = key($sortedData); // Mendapatkan nama dari elemen pertama
             $rank = $highestRanking[count($highestRanking) - 1]; // Mendapatkan nilai rank
-            $output = OutputModel::where('code_jabatan', $code_jabatan)->first();
+            $output = OutputModel::where('code_jabatan', $code_jabatan)->where('nama', $nama)->first();
             if ($output) {
                 // Jika data dengan code_jabatan yang sama sudah ada, lakukan pembaruan (update)
                 $output->nama = $nama;
