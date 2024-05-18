@@ -62,9 +62,9 @@
                             </select>
 
                             @error('jns_jabatan')
-                                <div class="invalid-feedback" role="alert">
-                                    {{ $message }}
-                                </div>
+                            <div class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -103,7 +103,14 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $row->code_jabatan}}</td>
                                     <td>{{ $row->jabatan }}</td>
-                                    <td>{{ $row->jns_jabatan }}</td>
+                                    <td>
+                                        @if($row->jns_jabatan === 'struktural')
+                                        Akademik
+                                        @else
+                                        {{ $row->jns_jabatan }}
+                                        @endif
+                                    </td>
+
                                     <td>
                                         <a href="{{ route('jabatan.edit',$row->id) }}" class="btn btn-sm btn-circle btn-warning">
                                             <i class="fa fa-edit"></i>
