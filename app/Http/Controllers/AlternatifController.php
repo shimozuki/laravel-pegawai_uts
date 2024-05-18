@@ -69,8 +69,11 @@ class AlternatifController extends Controller
         $this->validate($request, [
 
             'nama_alternatif' => 'required|string',
-            'nik' => 'required|string',
+            'nidn' => 'required|string',
             'alamat' => 'required|string',
+            'ttl' => 'required|string',
+            'jns_klamin' => 'required|string',
+            'code_jabatan' => 'required|string',
             'telepon' => 'required|string',
 
         ]);
@@ -80,9 +83,12 @@ class AlternatifController extends Controller
             $alternatif = Alternatif::findOrFail($id);
             $alternatif->update([
                 'nama_alternatif' => $request->nama_alternatif,
-                'nik' => $request->nik,
+                'nidn' => $request->nidn,
                 'alamat' => $request->alamat,
-                'telepon' => $request->telepon
+                'ttl' => $request->ttl, 
+                'jns_klamin' => $request->jns_klamin,
+                'code_jabatan' => $request->code_jabatan,
+                'telepon' => $request->telepon,
             ]);
             return back()->with('msg', 'Berhasil Mengubah Data');
         } catch (Exception $e) {
