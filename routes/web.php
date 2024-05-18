@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RektorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::resource('kriteria', 'App\Http\Controllers\KriteriaController')->except([
 Route::resource('alternatif', 'App\Http\Controllers\AlternatifController')->except(['create']);
 Route::resource('crips', 'App\Http\Controllers\CripsController')->except(['create','show']);
 Route::resource('jabatan', 'App\Http\Controllers\JabatanController')->except(['create', 'show']);
+Route::get('/admin/rektor', [RektorController::class, 'index'])->name('rektor.index');
 // Route::get('/penilaian', [App\Http\Controllers\PenilaianController::class, 'index'])->name('penilaian.index');
 Route::resource('/penilaian', 'App\Http\Controllers\PenilaianController');
 Route::resource('user', 'App\Http\Controllers\UserController')->except(['create']);

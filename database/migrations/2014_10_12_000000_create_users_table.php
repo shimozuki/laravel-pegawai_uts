@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('telepon');
             $table->string('keterangan');
+            $table->enum('role', ['admin', 'rektor']);
             $table->rememberToken();
             $table->timestamps();
         });

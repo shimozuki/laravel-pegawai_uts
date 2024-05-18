@@ -10,6 +10,10 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
+        <!-- Assuming you have a variable `Auth::user()->role` that holds the role of the authenticated user -->
+
+        <!-- Admin Sidebar -->
+        @if (Auth::check() && Auth::user()->role == 'admin')
         <li class="nav-item {{ request()->is('/') ? 'active':'' }}">
             <a class="nav-link" href="/">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -69,7 +73,6 @@
                 <span>Perhitungan</span></a>
         </li>
 
-
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
@@ -86,6 +89,17 @@
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
+        @endif
+
+        <!-- Rektor Sidebar -->
+        @if (Auth::check() && Auth::user()->role == 'rektor')
+        <li class="nav-item {{ request()->Is('rektor*') ? 'active':'' }}">
+            <a class="nav-link" href="{{ route('rektor.index') }}">
+                <i class="fas fa-fw fa-chart-line"></i>
+                <span>Laporan</span></a>
+        </li>
+        @endif
+
 
 
     </ul>

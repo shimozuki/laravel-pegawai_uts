@@ -58,6 +58,7 @@ class RegisterController extends Controller
             'alamat' => 'required|string',
             'telepon' => 'required|string',
             'keterangan' => 'required|string',
+            'role' => 'required|string',
             
         ]);
     }
