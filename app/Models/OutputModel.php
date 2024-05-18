@@ -13,6 +13,9 @@ class OutputModel extends Model
 
     public function scopeJoinJabatan($query)
     {
-        return $query->join('tb_jabatan', 'tb_output.code_jabatan', '=', 'tb_jabatan.code_jabatan')->select('tb_jabatan.jabatan', 'tb_output.nama');
+        $query->join('tb_jabatan', 'tb_output.code_jabatan', '=', 'tb_jabatan.code_jabatan')
+            ->join('alternatif', 'tb_output.nama', '=', 'alternatif.nama_alternatif')
+            ->select('tb_jabatan.jabatan', 'tb_output.nama', 'alternatif.nidn')
+            ->groupBy('tb_jabatan.jabatan', 'tb_output.nama', 'alternatif.nidn');
     }
 }

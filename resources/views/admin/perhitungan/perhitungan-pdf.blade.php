@@ -52,7 +52,7 @@
 
         <hr class="garis1" />
         <div style="margin-top: 25px; margin-bottom: 25px;">
-            <center><strong><u>LIST PEGAWAI TERPILIH</u></strong></center>
+            <center><strong><u>HASIL SELEKSI</u></strong></center>
         </div>
 
         <div class="collapse show" id="rank">
@@ -62,6 +62,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>NIDN</th>
                                 <th>Nama Pegawai</th>
                                 <th>Jabatan</th>
                             </tr>
@@ -71,6 +72,7 @@
                             @foreach($data as $output)
                             <tr>
                                 <td>{{ $no++ }}</td>
+                                <td>{{ $output->nidn }}</td>
                                 <td>{{ $output->nama }}</td>
                                 <td>{{ $output->jabatan }}</td>
                             </tr>

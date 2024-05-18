@@ -16,24 +16,21 @@
                 class="fas fa-download fa-sm text-white-50"></i>Download Laporan</a>
         </div> -->
     </div>
-    
+
 </div>
 
 <div class="card shadow mb-4">
     <!-- Card Header - Accordion -->
-    <a href="#listkriteria" class="d-block card-header py-3" data-toggle="collapse"
-    role="button" aria-expanded="true" aria-controls="collapseCardExample">
-    <h6 class="m-0 font-weight-bold text-primary">List Pengguna</h6>
+    <a href="#listkriteria" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+        <h6 class="m-0 font-weight-bold text-primary">List Pengguna</h6>
     </a>
 
-<!-- Card Content - Collapse -->
-<div class="collapse show" id="listkriteria">
-    <div class="card-body">
-        <div class="table-responsive">
-            <a href="{{ route('register')}}">
-                <button class="btn btn-sm btn-primary">Tambah Pengguna</button>
-            </a>
-            <br><br>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="listkriteria">
+        <div class="card-body">
+            <div class="table-responsive">
+                <a href="{{ URL::to('download-perhitungan-pdf') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i>Download Laporan</a>
+                <br><br>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -45,21 +42,21 @@
                     </thead>
                     <tbody>
                         @php $no = 1; @endphp
-                                @foreach ($pegawai as $row)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $row->nama }}</td>
-                                        <td>{{ $row->jabatan }}</td>
-                                        <td> <b>Terpilih<b> </td>
-                                    </tr>
-                                @endforeach
+                        @foreach ($pegawai as $row)
+                        <tr>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $row->nama }}</td>
+                            <td>{{ $row->jabatan }}</td>
+                            <td> <b>Terpilih<b> </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
+            </div>
         </div>
     </div>
 </div>
-</div>
-    
+
 
 
 
@@ -74,38 +71,37 @@
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert.js')}}"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#DataTable').DataTable();
 
-        $('.hapus').on('click', function(){
+        $('.hapus').on('click', function() {
             swal({
-                title: "Apa anda yakin?",
-                text: "Sekali anda menghapus data, data tidak dapat dikembalikan lagi!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
+                    title: "Apa anda yakin?",
+                    text: "Sekali anda menghapus data, data tidak dapat dikembalikan lagi!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
                 })
                 .then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: $(this).attr('href'),
-                        type: 'DELETE',
-                        data: {
-                            '_token' : "{{ csrf_token() }}"
-                        },
-                        success:function()
-                        {
-                            swal("Data berhasil dihapus!", {
-                            icon: "success",
-                            }).then((willDelete) => {
-                                window.location = "{{ route('user.index') }}"
-                            });
-                        }
-                    })
-                } else {
-                    swal("Data Aman!");
-                }
-            });
+                    if (willDelete) {
+                        $.ajax({
+                            url: $(this).attr('href'),
+                            type: 'DELETE',
+                            data: {
+                                '_token': "{{ csrf_token() }}"
+                            },
+                            success: function() {
+                                swal("Data berhasil dihapus!", {
+                                    icon: "success",
+                                }).then((willDelete) => {
+                                    window.location = "{{ route('user.index') }}"
+                                });
+                            }
+                        })
+                    } else {
+                        swal("Data Aman!");
+                    }
+                });
 
             return false;
         })
@@ -113,4 +109,3 @@
 </script>
 
 @stop
-    

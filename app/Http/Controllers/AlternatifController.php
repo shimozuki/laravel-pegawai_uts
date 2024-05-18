@@ -58,6 +58,7 @@ class AlternatifController extends Controller
     public function edit($id)
     {
         $data['alternatif'] = Alternatif::findOrFail($id);
+        $data['jabatan'] = Jabatan_model::all();
         return view('admin.alternatif.edit', $data);
     }
 
