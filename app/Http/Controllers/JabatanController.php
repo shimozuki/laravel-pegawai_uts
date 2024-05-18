@@ -25,7 +25,7 @@ class JabatanController extends Controller
             'jabatan'      => 'required|string'
         ]);
         $jabatan = Jabatan_model::where('code_jabatan', $request->jabatan)->Orwhere('jabatan', $request->jabatan)->first();
-        if (empty($jabatan)) {
+        if (!empty($jabatan)) {
             return redirect()->route('jabatan.index')
                 ->with('warning', 'Code atau jabatan sudah ada!');
         } else {

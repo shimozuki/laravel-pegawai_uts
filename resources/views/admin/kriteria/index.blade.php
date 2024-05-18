@@ -87,9 +87,6 @@
             <div class="collapse show" id="listkriteria">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <a href="{{ URL::to('download-kriteria-pdf') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm float-left"><i
-                            class="fas fa-download fa-sm text-white-50"></i>Download Laporan</a>
-                        
                         <table class="table table-striped table-hover" id="DataTable" data-paging="false">
                             <thead>
                                 <tr>
@@ -116,10 +113,6 @@
 
                                             <a href="{{ route('kriteria.destroy',$row->id) }}" class="btn btn-sm btn-circle btn-danger hapus">
                                             <i  class="fa fa-trash"></i>
-                                            </a>
-
-                                            <a href="{{ URL::to('download-crips-pdf',$row->id) }}"  target="_blank" class="btn btn-sm btn-circle btn-success">
-                                                <i  class="fa fa-download"></i>
                                             </a>
 
                                         </td>
