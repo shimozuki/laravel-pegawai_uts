@@ -73,7 +73,7 @@
                             <select name="jns_jabatan" id="" class="form-control" required>
                                 <option value="">---PILIH JENIS JABATAN---</option>
                                 <option value="global">Global</option>
-                                <option value="struktural">Struktural</option>
+                                <option value="struktural">Akademik</option>
                                 <option value="administratif">Administratif</option>
                             </select>
 

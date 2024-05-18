@@ -21,7 +21,7 @@
                 <label for="jns_jabatan">Code Jabatan</label>
                 <select name="jns_jabatan" id="jns_jabatan" class="form-control">
                     <option value="">---PILIH JENIS JABATAN---</option>
-                    <option value="struktural">Struktural</option>
+                    <option value="struktural">Akademik</option>
                     <option value="administratif">Administratif</option>
                 </select>
             </div>

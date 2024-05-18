@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label for="nama">Jenis Jabatan</label>
                             <select name="jns_jabatan" class="form-control" required>
-                                <option value="struktural" {{ $jabatan->jns_jabatan == 'struktural' ? 'selected' : '' }}>Struktural</option>
+                                <option value="struktural" {{ $jabatan->jns_jabatan == 'struktural' ? 'selected' : '' }}>Akademik</option>
                                 <option value="administratif" {{ $jabatan->jns_jabatan == 'administratif' ? 'selected' : '' }}>Administratif</option>
                             </select>
 
