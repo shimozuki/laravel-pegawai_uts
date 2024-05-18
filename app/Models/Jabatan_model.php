@@ -13,6 +13,6 @@ class Jabatan_model extends Model
 
     public function alternatif()
     {
-        return $this->hasMany(Alternatif::class, 'code_jabatan');
+        return $this->hasMany(Alternatif::class, 'code_jabatan', 'code_jabatan');
     }
 }

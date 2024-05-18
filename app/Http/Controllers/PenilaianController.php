@@ -27,7 +27,9 @@ class PenilaianController extends Controller
         // $alternatif = Alternatif::with('penilaian.crips')->get();
         $alternatif = Alternatif::with(['penilaian.crips', 'jabatan'])
             ->join('tb_jabatan', 'alternatif.code_jabatan', '=', 'tb_jabatan.code_jabatan')
-            ->where('tb_jabatan.jns_jabatan', $jns_jabatan) // Adjust as needed
+            ->where('tb_jabatan.jns_jabatan', $jns_jabatan)
+            ->select('alternatif.*')
+            ->distinct()
             ->get();
 
 
@@ -35,7 +37,6 @@ class PenilaianController extends Controller
         //return response()->json($alternatif);
         return view('admin.penilaian.index', compact('alternatif', 'kriteria'));
     }
-
     public function store(Request $request)
     {
         // return response()->json($request);

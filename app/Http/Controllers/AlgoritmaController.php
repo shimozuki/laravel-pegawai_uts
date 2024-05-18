@@ -31,8 +31,10 @@ class AlgoritmaController extends Controller
         }
 
         $jabatan = Jabatan_model::where('code_jabatan', $code_jabatan)->select('jabatan')->first();
+        $jns_jabatan = Jabatan_model::where('code_jabatan', $code_jabatan)->select('jns_jabatan')->first();
+        $array = [$jns_jabatan->jns_jabatan, 'global'];
         $alternatif = Alternatif::with('penilaian.crips')->where('code_jabatan', $code_jabatan)->get();
-        $kriteria = Kriteria::with('crips')->orderBy('nama_kriteria', 'ASC')->get();
+        $kriteria = Kriteria::with('crips')->whereIn('kriteria.jns_jabatan', $array)->orderBy('nama_kriteria', 'ASC')->get();
         $penilaian = Penilaian::with(['crips', 'alternatif' => function ($query) use ($code_jabatan) {
             $query->where('code_jabatan', $code_jabatan);
         }])->whereHas('alternatif', function ($query) use ($code_jabatan) {

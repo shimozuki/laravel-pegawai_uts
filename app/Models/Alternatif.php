@@ -13,7 +13,7 @@ class Alternatif extends Model
 
     public function penilaian()
     {
-        return $this->hasMany(Penilaian::class, 'alternatif_id');
+        return $this->hasMany(Penilaian::class);
     }
 
     public function jabatan()

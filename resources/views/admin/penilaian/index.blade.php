@@ -74,17 +74,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($alternatif as $alt => $valt)
+                            @forelse ($alternatif as $valt)
                             <tr>
                                 <td>{{ $valt->nama_alternatif }}</td>
                                 @if (count($valt->penilaian) > 0)
                                 @foreach($kriteria as $key => $value)
                                 <td>
-                                    <select name="crips_id[{{$valt->id}}][]" class="form-control fixed-width">
+                                    <select name="crips_id[{{$valt->id}}][]" class="form-control">
                                         @foreach($value->crips as $k_1 => $v_1)
-                                        <option value="{{ $v_1->id }}" {{ isset($valt->penilaian[$key]) && $v_1->id == $valt->penilaian[$key]->crips_id ? 'selected' : '' }}>
+                                        <option value="{{ $v_1->id }}" {{ $v_1->id == $valt->penilaian[$key]->crips_id ? 'selected' : '' }}>
                                             {{ $v_1->nama_crips }}
                                         </option>
+
                                         @endforeach
                                     </select>
 
