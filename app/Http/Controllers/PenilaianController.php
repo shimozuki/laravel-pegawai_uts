@@ -41,7 +41,7 @@ class PenilaianController extends Controller
     {
         // return response()->json($request);
         try {
-            DB::select("TRUNCATE penilaian");
+            // DB::select("TRUNCATE penilaian");
             foreach ($request->crips_id as $key => $value) {
                 foreach ($value as $key_1 => $value_1) {
                     Penilaian::create([
