@@ -24,13 +24,17 @@ class PenilaianController extends Controller
         if (empty($jns_jabatan)) {
             return view('admin.penilaian.index');
         }
-        // $alternatif = Alternatif::with('penilaian.crips')->get();
+
+        $notin = Penilaian::select('alternatif_id')->distinct()->pluck('alternatif_id')->toArray();
+
         $alternatif = Alternatif::with(['penilaian.crips', 'jabatan'])
             ->join('tb_jabatan', 'alternatif.code_jabatan', '=', 'tb_jabatan.code_jabatan')
             ->where('tb_jabatan.jns_jabatan', $jns_jabatan)
+            ->whereNotIn('alternatif.id', $notin) // Menggunakan 'alternatif.id' bukan 'penilaian.alternatif_id'
             ->select('alternatif.*')
             ->distinct()
             ->get();
+
 
 
         $kriteria = Kriteria::with('crips')->whereIn('kriteria.jns_jabatan', $array)->orderBy('id', 'ASC')->get();
@@ -39,15 +43,28 @@ class PenilaianController extends Controller
     }
     public function store(Request $request)
     {
-        // return response()->json($request);
         try {
-            // DB::select("TRUNCATE penilaian");
-            foreach ($request->crips_id as $key => $value) {
-                foreach ($value as $key_1 => $value_1) {
-                    Penilaian::create([
-                        'alternatif_id' => $key,
-                        'crips_id'      => $value_1
-                    ]);
+            foreach ($request->crips_id as $alternatif_id => $crips_ids) {
+                foreach ($crips_ids as $crips_id) {
+                    // Mencari penilaian berdasarkan alternatif_id dan crips_id
+                    $penilaian = Penilaian::where('alternatif_id', $alternatif_id)
+                        ->where('crips_id', $crips_id)
+                        ->first();
+
+                    if ($penilaian) {
+                        // Jika penilaian sudah ada, lakukan update
+                        $penilaian->update([
+                            'alternatif_id' => $alternatif_id,
+                            'crips_id'      => $crips_id
+                            // Tambahkan kolom lain yang perlu di-update
+                        ]);
+                    } else {
+                        // Jika penilaian belum ada, buat penilaian baru
+                        Penilaian::create([
+                            'alternatif_id' => $alternatif_id,
+                            'crips_id'      => $crips_id
+                        ]);
+                    }
                 }
             }
 

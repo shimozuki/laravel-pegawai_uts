@@ -64,15 +64,12 @@
                                 {{ $value->crips->bobot }}
                             </td>
                             @endforeach
-
                             @endif
                         </tr>
                         @empty
                         <tr>
                             <td>Tidak ada data!</td>
                         </tr>
-
-
                         @endforelse
                     </tbody>
                 </table>
