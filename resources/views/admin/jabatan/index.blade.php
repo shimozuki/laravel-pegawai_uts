@@ -14,7 +14,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Accordion -->
             <a href="#tambahkriteria" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary">Tambah Kriteria</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tambah Jabatan</h6>
             </a>
 
             <!-- Card Content - Collapse -->
@@ -79,7 +79,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Accordion -->
             <a href="#listkriteria" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary">List Kriteria</h6>
+                <h6 class="m-0 font-weight-bold text-primary">List Jabatan</h6>
             </a>
 
             <!-- Card Content - Collapse -->
