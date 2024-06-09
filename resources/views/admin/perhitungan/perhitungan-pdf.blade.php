@@ -12,7 +12,6 @@
             border-top: 3px solid black;
             height: 2px;
             border-bottom: 1px solid black;
-
         }
 
         #camat {
@@ -25,13 +24,11 @@
         }
 
         #ttd {
-            position: absolute;
-            bottom: 10;
-            right: 20;
+            text-align: right;
+            margin-right: 50px;
+            margin-top: 50px;
         }
     </style>
-
-
 </head>
 
 <body>
@@ -79,9 +76,14 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
+        </div>
+
+        <div id="ttd">
+            <p>Sumbawa, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+            <p>Rektor</p>
+            <p><strong>{{ Auth::user()->name }}</strong></p>
         </div>
     </div>
 </body>
