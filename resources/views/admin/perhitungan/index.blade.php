@@ -68,7 +68,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td>Tidak ada data!</td>
+                            <td colspan="{{ $kriteria->count() + 1 }}">Tidak ada data!</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -123,7 +123,7 @@
     <a href="#rank" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
         <h6 class="m-0 font-weight-bold text-primary">Tahap Perangkingan Jabatan {{ $jabatan->jabatan }}</h6>
     </a>
-    
+
     <!-- Card Content - Collapse -->
     <div class="collapse show" id="rank">
         <div class="card-body">
@@ -140,13 +140,13 @@
                         </tr>
                         <tr>
                             <th>Nama / Bobot</th>
-                            @foreach ($kriteria as $key => $value)
+                            @foreach ($kriteria->sortBy('id') as $key => $value)
                             <th>{{ $value->bobot }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        @php $no = 1;@endphp
+                        @php $no = 1; @endphp
                         @foreach($sortedData as $key => $value)
                         <tr>
                             <td>{{ $key }}</td>
@@ -160,6 +160,19 @@
                 </table>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Tambahkan Narasi Kesimpulan -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        @if (!empty($sortedData))
+        @php
+        $topRank = array_key_first($sortedData);
+        @endphp
+        <center><H2>Kesimpulan</H2></center>
+        <p>Berdasarkan hasil perhitungan dan perengkingan, dapat disimpulkan bahwa yang terpilih di jabatan <strong>{{ $jabatan->jabatan }}</strong> adalah <Strong>{{ $topRank }}</Strong>.</p>
+        @endif
     </div>
 </div>
 @endif

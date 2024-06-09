@@ -13,16 +13,18 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
     <style>
-        #title{
+        #title {
             padding: 70px 50px 70px 50px;
+        }
+        body.bg-gradient-primary {
+            background: url('{{ asset('Rektorat_UTS.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
         }
     </style>
 
@@ -49,7 +51,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
-                                    <form class="user" method="post" action="{{ route('login')}}">
+                                    <form class="user" method="post" action="{{ route('login') }}">
                                         <div class="form-group">
                                             @csrf
                                             <input id="email" type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Masukan Email">
