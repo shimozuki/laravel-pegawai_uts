@@ -2,6 +2,7 @@
 @section('title', 'SPK Staf UTS')
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 @stop
 @section('content')
 @if (empty(request('code_jabatan')))
@@ -29,7 +30,31 @@
     <!-- Card Header - Accordion -->
     <div class="row">
         <div class="col">
-            <a href="{{ URL::to('download-perhitungan-pdf') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i>Download Laporan</a>
+            <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm float-right" data-toggle="modal" data-target="#downloadModal">
+                <i class="fas fa-download fa-sm text-white-50"></i>Download Laporan
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for download options -->
+<div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="downloadModalLabel">Pilih Format Download</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Pilih format file yang ingin Anda unduh:</p>
+                <a href="{{ URL::to('download-perhitungan-pdf') }}" target="_blank" class="btn btn-primary">PDF</a>
+                <a href="{{ URL::to('download-perhitungan-word') }}" target="_blank" class="btn btn-primary">Word</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
         </div>
     </div>
 </div>
@@ -192,3 +217,8 @@
 </script>
 @stop
 @endif
+@section('js')
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+@stop

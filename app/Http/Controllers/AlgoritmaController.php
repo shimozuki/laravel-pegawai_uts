@@ -10,6 +10,11 @@ use App\Models\Penilaian;
 use PDF;
 use Carbon\Carbon;
 use App\Models\OutputModel;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
+
+use Illuminate\Support\Facades\Auth;
+
 
 class AlgoritmaController extends Controller
 {
@@ -119,5 +124,68 @@ class AlgoritmaController extends Controller
         $pdf = PDF::loadView('admin.perhitungan.perhitungan-pdf', compact('data'));
         $pdf->setPaper('A3', 'potrait');
         return $pdf->stream('hasil_selection.pdf');
+    }
+    public function downloadWord()
+    {
+        $data = OutputModel::joinJabatan()->get();
+
+        $phpWord = new PhpWord();
+        $section = $phpWord->addSection();
+
+        // Add header
+        $header = $section->addHeader();
+        $table = $header->addTable();
+        $table->addRow();
+        $table->addCell(2000)->addImage('https://uts.ac.id/wp-content/uploads/2021/01/UTS-1000-Universal-Square-Color.png', [
+            'width' => 90,
+            'height' => 90,
+            'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT,
+        ]);
+        $cell = $table->addCell(8000);
+        $cell->addText('KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN', ['size' => 16, 'bold' => true], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+        $cell->addText('UNIVERSITAS TEKNOLOGI SUMBAWA', ['size' => 16, 'bold' => true], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+        $cell->addText('Jl.RAYA OLAT MARAS BATU ALANG KABUPATEN SUMBAWA', ['size' => 12], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+        $cell->addText('Tlp.082147004028  Website : https://uts.ac.id/en/welcome', ['size' => 12], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+
+        // Add line below header
+        $lineStyle = array('weight' => 3, 'width' => 500, 'height' => 0, 'color' => '000000', 'alignment' => 'start');
+        $header->addLine($lineStyle);
+
+        // Add a line break
+        $section->addTextBreak(1);
+
+        // Add title
+        $section->addText('HASIL SELEKSI', ['size' => 16, 'bold' => true, 'underline' => 'single'], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+
+        // Add table
+        $table = $section->addTable(['borderSize' => 6, 'borderColor' => '000000', 'cellMargin' => 50]);
+        $table->addRow();
+        $table->addCell(500)->addText('No', ['bold' => true]);
+        $table->addCell(1500)->addText('NIDN', ['bold' => true]);
+        $table->addCell(3500)->addText('Nama Pegawai', ['bold' => true]);
+        $table->addCell(3500)->addText('Jabatan', ['bold' => true]);
+
+        $no = 1;
+        foreach ($data as $output) {
+            $table->addRow();
+            $table->addCell(500)->addText($no++);
+            $table->addCell(1500)->addText($output->nidn);
+            $table->addCell(3500)->addText($output->nama);
+            $table->addCell(3500)->addText($output->jabatan);
+        }
+
+        // Add signature
+        $section->addTextBreak(2);
+        $section->addText('Sumbawa, ' . \Carbon\Carbon::now()->translatedFormat('d F Y'), null, ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::RIGHT]);
+        $section->addText('Rektor', null, ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::RIGHT]);
+        $section->addText(Auth::user()->name, ['bold' => true], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::RIGHT]);
+
+        // Save the document
+        $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
+        $fileName = 'hasil_seleksi.docx';
+        $tempFile = tempnam(sys_get_temp_dir(), $fileName);
+        $objWriter->save($tempFile);
+
+        return response()->download($tempFile, $fileName)->deleteFileAfterSend(true);
     }
 }
