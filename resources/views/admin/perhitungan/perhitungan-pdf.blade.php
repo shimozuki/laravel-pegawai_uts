@@ -49,7 +49,7 @@
 
         <hr class="garis1" />
         <div style="margin-top: 25px; margin-bottom: 25px;">
-            <center><strong><u>HASIL SELEKSI</u></strong></center>
+            <center><strong><u>HASIL SELEKSI PEJABAT STRUKTURAL UNIVERSITAS TEKNOLOGI SUMBAWA</u></strong></center>
         </div>
 
         <div class="collapse show" id="rank">

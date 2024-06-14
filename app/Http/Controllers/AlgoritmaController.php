@@ -142,8 +142,8 @@ class AlgoritmaController extends Controller
             'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::LEFT,
         ]);
         $cell = $table->addCell(8000);
-        $cell->addText('KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN', ['size' => 16, 'bold' => true], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
-        $cell->addText('UNIVERSITAS TEKNOLOGI SUMBAWA', ['size' => 16, 'bold' => true], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+        $cell->addText('KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN', ['size' => 14, 'bold' => true], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+        $cell->addText('UNIVERSITAS TEKNOLOGI SUMBAWA', ['size' => 14, 'bold' => true], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
         $cell->addText('Jl.RAYA OLAT MARAS BATU ALANG KABUPATEN SUMBAWA', ['size' => 12], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
         $cell->addText('Tlp.082147004028  Website : https://uts.ac.id/en/welcome', ['size' => 12], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
 
@@ -155,7 +155,7 @@ class AlgoritmaController extends Controller
         $section->addTextBreak(1);
 
         // Add title
-        $section->addText('HASIL SELEKSI', ['size' => 16, 'bold' => true, 'underline' => 'single'], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
+        $section->addText('HASIL SELEKSI PEJABAT STRUKTURAL UNIVERSITAS TEKNOLOGI SUMBAWA', ['size' => 16, 'bold' => true, 'underline' => 'single'], ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]);
 
         // Add table
         $table = $section->addTable(['borderSize' => 6, 'borderColor' => '000000', 'cellMargin' => 50]);
