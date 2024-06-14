@@ -29,7 +29,8 @@
     <div class="collapse show" id="listkriteria">
         <div class="card-body">
             <div class="table-responsive">
-                <a href="{{ URL::to('download-perhitungan-pdf') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i>Download Laporan</a>
+                <a href="{{ URL::to('download-perhitungan-pdf') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i>Download Laporan pdf</a>
+                <a href="{{ URL::to('download-perhitungan-word') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i>Download Laporan word</a>
                 <br><br>
                 <table class="table table-bordered">
                     <thead>
