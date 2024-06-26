@@ -41,7 +41,7 @@
                         <font size="4">KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN</font><br>
                         <font size="4">UNIVERSITAS TEKNOLOGI SUMBAWA</font><br>
                         <font size="2">Jl.RAYA OLAT MARAS BATU ALANG KABUPATEN SUMBAWA</font><br>
-                        <font size="2">Tlp.082147004028  Website : https://uts.ac.id/en/welcome</font><br>
+                        <font size="2">Tlp.082147004028 Website : https://uts.ac.id/en/welcome</font><br>
                     </center>
                 </td>
             </tr>
@@ -83,8 +83,16 @@
         <div id="ttd">
             <p>Sumbawa, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
             <p>Rektor</p>
-            <p><strong>{{ Auth::user()->name }}</strong></p>
+            <p><strong>
+                    @if (Auth::check() && Auth::user()->name == 'admin')
+                    Lalu Ahmad Taubih, S.AP., M.Sc., CHCM
+                    @else
+                    Hj. Niken Saptarini Widyawati, S.E., M.Sc.
+                    @endif
+                </strong></p>
+
         </div>
     </div>
 </body>
+
 </html>
