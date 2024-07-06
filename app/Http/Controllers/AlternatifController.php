@@ -70,7 +70,7 @@ class AlternatifController extends Controller
         $this->validate($request, [
 
             'nama_alternatif' => 'required|string',
-            'nidn' => 'required|string',
+            'nidn' => 'required|string|unique:alternatif,nidn',
             'alamat' => 'required|string',
             'ttl' => 'required|string',
             'jns_klamin' => 'required|string',
